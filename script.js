@@ -17,7 +17,6 @@ function addBookToLibrary(title, author, pages, read){
 
 function showBooks(){
     const tableBody = document.querySelector('tbody');
-    console.log(tableBody)
     
     const oldRows = tableBody.querySelectorAll('tr');
 
@@ -44,6 +43,8 @@ function showBooks(){
         const tableAction = document.createElement('td');
         const tableButton = document.createElement('button');
         tableButton.textContent = 'Delete';
+        tableRow.addEventListener('click', deleteBook);
+
 
         tableRow.appendChild(tableTitle);
         tableRow.appendChild(tableAuthor);
@@ -54,25 +55,48 @@ function showBooks(){
         tableRow.appendChild(tableAction);
 
         tableBody.appendChild(tableRow);
+
+
     });
 
 }
 
-/*
+function deleteBook(e){
+    /* Borramos del Array y reimprimimos la tabla */
+
+    const titleData = e.currentTarget.querySelector('th');
+
+    myLibrary.splice(myLibrary.findIndex((element) => titleData.textContent === element.title) ,1)
+
+    showBooks();
+}
+
+function newBook(event){
+
+    const formData = document.querySelectorAll('input');
+
+    addBookToLibrary(formData[0].value, formData[1].value, formData[2].value, formData[3].value);
+
+    formData.forEach(element => {
+        element.value = ''        
+    });
+
+    event.preventDefault();
+}
+
+const btnShowBooks = document.querySelector('.showBooks');
+btnShowBooks.addEventListener('click', showBooks);
+
+
+const btnSubmitForm = document.querySelector('.submitForm');
+btnSubmitForm.addEventListener('click', newBook);
+
+
+
+/* Add starting books */
 addBookToLibrary('Dune', 'Frank Herbert', 412, 0);
 addBookToLibrary('El Mesias de Dune', 'Frank Herbert', 304, 0);
 addBookToLibrary('Hijos de Dune', 'Frank Herbert', 544, 0);
 addBookToLibrary('Dios emperador de Dune', 'Frank Herbert', 568, 0);
 addBookToLibrary('Herejes de Dune', 'Frank Herbert', 568, 0);
 addBookToLibrary('Casa capitular Dune', 'Frank Herbert', 640, 0);
-
-
-
-
-
-
-
-
-
-
-*/
