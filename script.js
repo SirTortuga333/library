@@ -41,9 +41,12 @@ function showBooks(){
         tableRead.textContent = element.read ? 'Yes' : 'No'
 
         const tableAction = document.createElement('td');
-        const tableButton = document.createElement('button');
-        tableButton.textContent = 'Delete';
-        tableRow.addEventListener('click', deleteBook);
+        const tableDelete = document.createElement('button');
+        tableDelete.textContent = 'Delete';
+        tableDelete.addEventListener('click', deleteBook);
+        const tableReadBook = document.createElement('button');
+        tableReadBook.textContent = 'Read';
+        tableReadBook.addEventListener('click', readBook);
 
 
         tableRow.appendChild(tableTitle);
@@ -51,7 +54,8 @@ function showBooks(){
         tableRow.appendChild(tablePages);
         tableRow.appendChild(tableRead);
         
-        tableAction.appendChild(tableButton);
+        tableAction.appendChild(tableDelete);
+        tableAction.appendChild(tableReadBook);
         tableRow.appendChild(tableAction);
 
         tableBody.appendChild(tableRow);
@@ -64,9 +68,19 @@ function showBooks(){
 function deleteBook(e){
     /* Borramos del Array y reimprimimos la tabla */
 
-    const titleData = e.currentTarget.querySelector('th');
+    const titleData = e.currentTarget.parentNode.parentNode.querySelector('th');
 
     myLibrary.splice(myLibrary.findIndex((element) => titleData.textContent === element.title) ,1)
+
+    showBooks();
+}
+
+function readBook(e){
+
+    const titleData = e.currentTarget.parentNode.parentNode.querySelector('th');
+
+    const index = (myLibrary.findIndex((element) => titleData.textContent === element.title));
+    myLibrary[index].read = myLibrary[index].read === 0 ? 1 : 0;
 
     showBooks();
 }
