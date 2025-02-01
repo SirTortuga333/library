@@ -19,6 +19,12 @@ function showBooks(){
     const tableBody = document.querySelector('tbody');
     console.log(tableBody)
     
+    const oldRows = tableBody.querySelectorAll('tr');
+
+    oldRows.forEach(element => {
+        tableBody.removeChild(element);
+    });
+
     myLibrary.forEach(element => {
 
         const tableRow = document.createElement('tr');
@@ -35,11 +41,18 @@ function showBooks(){
         const tableRead = document.createElement('td');
         tableRead.textContent = element.read ? 'Yes' : 'No'
 
+        const tableAction = document.createElement('td');
+        const tableButton = document.createElement('button');
+        tableButton.textContent = 'Delete';
+
         tableRow.appendChild(tableTitle);
         tableRow.appendChild(tableAuthor);
         tableRow.appendChild(tablePages);
         tableRow.appendChild(tableRead);
         
+        tableAction.appendChild(tableButton);
+        tableRow.appendChild(tableAction);
+
         tableBody.appendChild(tableRow);
     });
 

@@ -85,7 +85,9 @@ thead{
 
 tbody tr:nth-child(even){
     background-color: #ababab;
-
+}
+tbody tr:nth-child(odd){
+    background-color: #fff;
 }
 
 td, th{
