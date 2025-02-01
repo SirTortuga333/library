@@ -8,6 +8,44 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    
+    <div class="ui">
+        <button type="button" class="showBooks">Show Books</button>
+
+        <form action="">
+            <label for="title">Enter Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Enter Author:</label>
+            <input type="text" id="author" name="author" required> 
+
+            <label for="Pages">Enter Pages:</label>
+            <input type="tel" id="pages" name="pages" min="0" max="10000" required>
+
+            <label for="read">Enter 1 if read | 0 if not read yet:</label>
+            <input type="tel" id="read" name="read" min="0" max="1" required>
+
+            
+
+            <button type="submit" class="submitForm">Add new Book</button>
+        </form>
+    </div>
+    <div class="table-container">
+        <table>
+            <caption>
+                My Books
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Read</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Generate rows based on books in the library -->
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
